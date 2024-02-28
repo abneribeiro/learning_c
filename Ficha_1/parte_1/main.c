@@ -45,7 +45,7 @@ int main()
     OrdenarDados(ed);
 
     // Contar o n�mero de pessoas que fizeram o �ltimo acesso ao site num dado ano
-    int ContPessAcAno = ContarPessoasAcessosAno(ed, 2022);
+    //int ContPessAcAno = ContarPessoasAcessosAno(ed, 2022);
 
     // Determinar a pessoa que fez mais acessos
     PessoaMaisAcessos(ed);
