@@ -13,31 +13,32 @@
 void GerarFicheiro_So_Para_Testes(char *nficheiro, int N)
 {
     FILE *F = fopen(nficheiro, "wb");
-    if(!F) return;
+    if (!F)
+        return;
 
-    for (int i=0; i < N; i++){
+    for (int i = 0; i < N; i++)
+    {
 
         USER ut;
-        ut.numero_acessos= Aleatorio(10,1000);
-        sprintf(ut.nome, "NOME_utilizador-%d", i+1);
-        sprintf(ut.utilizador, "username-XXX%d", i+1);
+        ut.numero_acessos = Aleatorio(10, 1000);
+        sprintf(ut.nome, "NOME_utilizador-%d", i + 1);
+        sprintf(ut.utilizador, "username-XXX%d", i + 1);
         ut.data_registo.ano = Aleatorio(2000, 2023);
-        ut.data_registo.mes = Aleatorio(1,12);
+        ut.data_registo.mes = Aleatorio(1, 12);
         ut.data_registo.dia = Aleatorio(1, 28);
         ut.data_ultimo_acesso.ano = Aleatorio(2000, 2023);
-        ut.data_ultimo_acesso.mes = Aleatorio(1,12);
+        ut.data_ultimo_acesso.mes = Aleatorio(1, 12);
         ut.data_ultimo_acesso.dia = Aleatorio(1, 28);
-        ut.telemovel = 900000000+ Aleatorio(1, 100);
-        ut.joia = (float) Aleatorio(100,200)/10;
+        ut.telemovel = 900000000 + Aleatorio(1, 100);
+        ut.joia = (float)Aleatorio(100, 200) / 10;
 
         fwrite(&ut, sizeof(USER), 1, F);
     }
     fclose(F);
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sao de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sao de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
-
 
 //____________________________________________________________________________________________________________________________________
 //____________________________________________________________________________________________________________________________________
@@ -57,15 +58,17 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sao de <%s> ~~~~~~~~
 */
 void LerFicheiro(EDADOS *ed, char *nficheiro)
 {
-    if(!ed) return;
-    if(!ed->Dados) return;
+    if (!ed)
+        return;
+    if (!ed->Dados)
+        return;
 
     FILE *F = fopen(nficheiro, "rb");
-    if (!F){
-      printf("Erro ao abrir ficheiro");
-      return;// INSUCESSO;  -- sse a ff retornar int! ver nota ALUNOS ALTERAR
+    if (!F)
+    {
+        printf("Erro ao abrir ficheiro");
+        return; // INSUCESSO;  -- sse a ff retornar int! ver nota ALUNOS ALTERAR
     }
-
 
     int Tam_User = sizeof(USER);
     printf("Tam_User = %d\n", Tam_User);
@@ -88,7 +91,8 @@ void LerFicheiro(EDADOS *ed, char *nficheiro)
     ed->N_USER = Nreg;
     fclose(F);
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -117,23 +121,22 @@ void MostrarUser(USER *Reg)
     printf("------------------------------------------------------\n");
 }
 
-
 void ListarUtilizadores(EDADOS *ed)
 {
-    if (!ed) return;
-    if (!ed->Dados) return;
+    if (!ed)
+        return;
+    if (!ed->Dados)
+        return;
 
     for (int i = 0; i < ed->N_USER; i++)
     {
         MostrarUser(&(ed->Dados[i]));
     }
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 // ff auxiliar � funcao ListarUtilizadores
-
-
 
 //____________________________________________________________________________________________________________________________________
 //____________________________________________________________________________________________________________________________________
@@ -145,13 +148,15 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
  *
  */
 
-EDADOS * DuplicarDados(EDADOS *ed)
+EDADOS *DuplicarDados(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     return NULL;
 }
@@ -168,12 +173,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 void OrdenarDados(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -186,15 +192,31 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
  *
  */
 
-int ContarPessoasAcessosAno(EDADOS *ed, int ano)
+void ContarPessoasAcessosAno(EDADOS *ed, int ano)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+
+    if (!ed)
+        return;
+    if (!ed->Dados)
+        return;
+
+    int cont = 0;
+
+    for (int i = 0; i < ed->N_USER; i++)
+
+        if (ed->Dados[i].data_ultimo_acesso.ano == ano)
+            cont++;
+
+    printf("?\nNumero de pessoas que fizeram o ultimo acesso ao site no ano %d: %d\n", ano, cont);
+    
+
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
-    return 0;
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -209,12 +231,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 void PessoaMaisAcessos(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -229,11 +252,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 float TotalJoias(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     return 0;
 }
@@ -250,11 +275,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 int MesMaisRegistos(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
     return 0;
 }
 
@@ -270,12 +297,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 void PesquisarCod(EDADOS *ed, char *UserName)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -290,12 +318,13 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 void PesquisarNome(EDADOS *ed, char *Name)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
     printf("c�digo aqui!!!!\n");
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
 
 //____________________________________________________________________________________________________________________________________
@@ -310,13 +339,16 @@ if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~
 
 void LibertarMemoria(EDADOS *ed)
 {
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Entrei em <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 
-    if (!ed) return;
-    if (ed->Dados != NULL) free(ed->Dados);
+    if (!ed)
+        return;
+    if (ed->Dados != NULL)
+        free(ed->Dados);
     free(ed);
     ed = NULL;
 
-if (DEBUG) printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
-
+    if (DEBUG)
+        printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Sa� de <%s> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n", __FUNCTION__);
 }
