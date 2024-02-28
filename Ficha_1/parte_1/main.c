@@ -1,23 +1,23 @@
 #include "Est_DadosFicha1.h"
 
-
 int main()
 {
-    srand(time(NULL));// variar semente para gerar aleatorios
+    srand(time(NULL)); // variar semente para gerar aleatorios
 
     printf("ED 2023/2024 Ficha de Trabalho n 1 (Revisao): ponteiros, memoria dinamica (...)\n");
 
-    EDADOS *ed = (EDADOS *) malloc(1 * sizeof(EDADOS));
+    EDADOS *ed = (EDADOS *)malloc(1 * sizeof(EDADOS));
 
-    if (ed==NULL){
+    if (ed == NULL)
+    {
         printf("Erro ao alocar mem�ria\n");
         return INSUCESSO; // Termina o programa com codigo de erro
     }
 
     char *nficheiro = "Ficha1Utilizadores.dat";
     int Nutilizadores = 15;
-//    printf("N utilizadores:\n");
- //   scanf("%d", &Nutilizadores);
+    //    printf("N utilizadores:\n");
+    //   scanf("%d", &Nutilizadores);
     GerarFicheiro_So_Para_Testes(nficheiro, Nutilizadores);
 
     // Ler ficheiro
@@ -35,7 +35,7 @@ int main()
     */
 
     // Listar todos os utilizadores
-    ListarUtilizadores(ed); //ALUNOS: alterar a ff para mostrar apenas M utilizadores inv�s de todos!!!
+    ListarUtilizadores(ed); // ALUNOS: alterar a ff para mostrar apenas M utilizadores inv�s de todos!!!
 
     // Duplicar dados
     EDADOS *ConjUtiliz_novo = (EDADOS *)malloc(1 * sizeof(EDADOS));
