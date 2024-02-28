@@ -1,0 +1,33 @@
+Nome do aluno: Zezito:---- 0
+UC: UC-0, Nota: 11
+Nome do aluno: Zezito:---- 0
+UC: UC-1, Nota: 16
+Nome do aluno: Zezito:---- 0
+UC: UC-2, Nota: 12
+Nome do aluno: Zezito:---- 0
+UC: UC-3, Nota: 20
+Nome do aluno: Zezito:---- 0
+UC: UC-4, Nota: 12
+-------------------------------
+Nome do aluno: Zezito:---- 1
+UC: UC-0, Nota: --
+Nome do aluno: Zezito:---- 1
+UC: UC-1, Nota: 15
+Nome do aluno: Zezito:---- 1
+UC: UC-2, Nota: 13
+Nome do aluno: Zezito:---- 1
+UC: UC-3, Nota: 18
+Nome do aluno: Zezito:---- 1
+UC: UC-4, Nota: 17
+-------------------------------
+Nome do aluno: Zezito:---- 2
+UC: UC-0, Nota: 18
+Nome do aluno: Zezito:---- 2
+UC: UC-1, Nota: 14
+Nome do aluno: Zezito:---- 2
+UC: UC-2, Nota: --
+Nome do aluno: Zezito:---- 2
+UC: UC-3, Nota: 12
+Nome do aluno: Zezito:---- 2
+UC: UC-4, Nota: --
+-------------------------------

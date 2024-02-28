@@ -1,0 +1,30 @@
+ALUNO NMEC = 5289 NOME = Zezito:---- 0
+	 UC UC-0 NOTA = 3
+	 UC UC-1 NOTA = 5
+	 UC UC-2 NOTA = 4
+	 UC UC-3 NOTA = 1
+	 UC UC-4 NOTA = 16
+ALUNO NMEC = 3036 NOME = Zezito:---- 1
+	 UC UC-0 NOTA = 10
+	 UC UC-1 NOTA = 16
+	 UC UC-2 NOTA = 8
+	 UC UC-3 NOTA = 8
+	 UC UC-4 NOTA = 4
+ALUNO NMEC = 2498 NOME = Zezito:---- 2
+	 UC UC-0 NOTA = 10
+	 UC UC-1 NOTA = 20
+	 UC UC-2 NOTA = 0
+	 UC UC-3 NOTA = 0
+	 UC UC-4 NOTA = 4
+ALUNO NMEC = 3848 NOME = Zezito:---- 3
+	 UC UC-0 NOTA = 16
+	 UC UC-1 NOTA = 0
+	 UC UC-2 NOTA = 12
+	 UC UC-3 NOTA = 8
+	 UC UC-4 NOTA = 11
+ALUNO NMEC = 7463 NOME = Zezito:---- 4
+	 UC UC-0 NOTA = 13
+	 UC UC-1 NOTA = 2
+	 UC UC-2 NOTA = 6
+	 UC UC-3 NOTA = 2
+	 UC UC-4 NOTA = 20
